@@ -1,28 +1,27 @@
+import { defineConfig } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
+import { cacheCloudflare } from "@astrojs/cloudflare/cache";
 import react from "@astrojs/react";
-import { d1, r2, sandbox } from "@emdash-cms/cloudflare";
-import { formsPlugin } from "@emdash-cms/plugin-forms";
-import webhookNotifier from "@emdash-cms/plugin-webhook-notifier";
-import { defineConfig, fontProviders } from "astro/config";
 import emdash from "emdash/astro";
+import { d1, r2 } from "@emdash-cms/cloudflare";
+import { fontProviders } from "astro:fonts";
 
 export default defineConfig({
-	output: "server",
-	adapter: cloudflare(),
-	image: {
-		layout: "constrained",
-		responsiveStyles: true,
-	},
-	integrations: [
-		react(),
-		emdash({
-			database: d1({ binding: "DB", session: "auto" }),
-			storage: r2({ binding: "MEDIA" }),
-			plugins: [formsPlugin()],
-			sandboxed: [webhookNotifier],
-			sandboxRunner: sandbox(),
-			marketplace: "https://marketplace.emdashcms.com",
-		}),
+    output: "server",
+    site: "https://prepperslop.com",
+    adapter: cloudflare(),
+    cache: {
+        provider: cacheCloudflare(),
+    },
+    routeRules: {
+        "/": { maxAge: 300, swr: 86400 },
+    },
+    integrations: [
+        react(),
+        emdash({
+            database: d1({ binding: "DB" }),
+            storage: r2({ binding: "MEDIA" }),
+        }),
 	],
 	fonts: [
 		{
