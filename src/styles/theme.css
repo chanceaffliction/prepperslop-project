@@ -1,3 +1,8 @@
+:root {
+    --font-body: var(--font-emdash);
+    --font-mono: monospace;
+}
+
 /*
   theme.css -- your theme overrides. This is the file to edit to
   retheme the site.
