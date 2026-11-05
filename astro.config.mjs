@@ -15,17 +15,20 @@ export default defineConfig({
             storage: r2({ binding: "MEDIA" }),
         }),
     ],
-    fonts: {
-        body: {
+       fonts: [
+        {
+            name: "body",
             google: {
                 families: ["Noto Sans:400,600,700"]
             }
         },
-        mono: {
+        {
+            name: "mono",
             google: {
                 families: ["Noto Sans Mono:400"]
             }
         }
-    },
+    ],
+
     devToolbar: { enabled: false },
 });
