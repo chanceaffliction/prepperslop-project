@@ -11,6 +11,7 @@ import LiveSearch from "emdash/ui/search";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
 import "../styles/tokens.css";
 import "../styles/theme.css";
+import { Font } from "astro:assets";
 
 interface Props {
 	title: string;
@@ -81,6 +82,9 @@ const isLoggedIn = !!Astro.locals.user;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<Font cssVariable="--font-body" preload />
+		<Font cssVariable="--font-mono" />
+
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
 		<script is:inline>
